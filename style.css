@@ -151,7 +151,6 @@ footer .logo{font-size:3.4rem;font-weight:300}
     backdrop-filter:blur(16px);
     -webkit-backdrop-filter:blur(16px);
     border-bottom:1px solid rgba(20,45,78,0.12);
-    border-bottom:1px solid var(--navy);
     padding:0 var(--pad);
     max-height:0;overflow:hidden;visibility:hidden;opacity:0;
     transition:max-height .3s ease,opacity .25s ease,visibility 0s .3s;
