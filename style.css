@@ -30,10 +30,19 @@ section,header,footer{border-bottom:1px solid var(--navy)}
 
 
 /* ===== Header ===== */
-header{background:var(--off_white);display:flex;justify-content:space-between;align-items:center;padding:20px var(--pad);position:sticky;top:0;z-index:20}
-.logo{font:400 1.6rem var(--serif);text-decoration:none}
-header nav{display:flex;align-items:center;gap:28px}
-header nav a:not(.pill){text-decoration:none}
+header{
+  background:rgba(248,250,252,0.75);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(20,45,78,0.12);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px var(--pad);
+  position:sticky;
+  top:0;
+  z-index:20;
+}
 
 /* ===== Hero ===== */
 .hero{background:var(--light_slate);display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:var(--pad);padding:clamp(40px,6vw,76px) var(--pad)}
