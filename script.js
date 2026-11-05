@@ -85,16 +85,31 @@ document.getElementById('contact-form').addEventListener('submit', async functio
 } catch (err) { console.error("script.js part 3:", err); }
 
 /* ===== Mobile Header Menu ===== */
-try {
-  const btn = document.querySelector('.menu-btn');
-  const nav = document.getElementById('main-nav');
-  const setOpen = open => {
+const btn = document.querySelector('.menu-btn');
+const nav = document.getElementById('main-nav');
+
+if (btn && nav) {
+  const setOpen = (open) => {
     nav.classList.toggle('open', open);
     btn.setAttribute('aria-expanded', open);
     btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
   };
-  btn.addEventListener('click', () => setOpen(!nav.classList.contains('open')));
-  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setOpen(false)));
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(false); });
-  window.addEventListener('resize', () => { if (window.innerWidth > 820) setOpen(false); });
-} catch (err) { console.error("mobile menu:", err); }
+
+  btn.addEventListener('click', () => {
+    setOpen(!nav.classList.contains('open'));
+  });
+
+  nav.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => setOpen(false));
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') setOpen(false);
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 820) setOpen(false);
+  });
+} else {
+  console.error('Mobile menu: button or navigation element not found.');
+}
