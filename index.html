@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Adri – Web Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <a class="logo" href="#top">Irfan Mohammed</a>
+  <nav aria-label="Main">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills and expertise</a>
+    <a href="#FAQ">FAQ</a>
+  </nav>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div>
+      <h1>Hey, I’m Irfan.</h1>
+      <p>I help organizations make informed, data-driven decisions with my analytical thinking, data-handling experience, and problem-solving expertise.</p>
+      <a class="pill navy" href="#contact">Work with Me</a>
+      <a class="pill navy" href="resume/Irfan_Mohammed_M_Resume.pdf" download target="_blank" rel="noopener">Resume</a>
+    </div>
+<div class="img" role="img" aria-label="Portrait of Irfan" style="--img:url(photos/hero.png); background-position:center 20%"></div>
+</section>
+
+ <section class="about" id="about">
+    <h2>About Me</h2>
+    <p>I am a B.Sc. Computer Science graduate with 1.5+ years of experience in banking and business operations. My experience at Tamilnad Mercantile Bank and Corizo Edutech has given me exposure to customer data management, data verification, credit monitoring, risk assessment, and operational processes. I bring strong analytical thinking, attention to detail, and problem-solving skills, and I am eager to apply my domain knowledge to data analytics, business insights, and data-driven decision-making.</p>
+  </section>
+
+  <section class="skills" aria-label="Highlights" id="skills">    
+    <div><svg class="badge" data-icon="experience" viewBox="0 0 100 100" aria-hidden="true"></svg><h3>1.5+ Years of Experience</h3></div>
+    <div><svg class="badge" data-icon="risk" viewBox="0 0 100 100" aria-hidden="true"></svg><h3>Risk Assessment</h3></div>
+    <div><svg class="badge" data-icon="resolve" viewBox="0 0 100 100" aria-hidden="true"></svg><h3>Issue Resolution</h3></div>
+    <div><svg class="badge" data-icon="process" viewBox="0 0 100 100" aria-hidden="true"></svg><h3>Process Management</h3></div>
+    <div><svg class="badge" data-icon="verify" viewBox="0 0 100 100" aria-hidden="true"></svg><h3>Data Verification</h3></div>
+    <div><svg class="badge" data-icon="comply" viewBox="0 0 100 100" aria-hidden="true"></svg><h3>Regulatory Compliance</h3></div>
+    <div><svg class="badge" data-icon="analyze" viewBox="0 0 100 100" aria-hidden="true"></svg><h3>Analytical Thinking</h3></div>
+  </section>
+
+  <section class="exp" id="experience">
+    <h2>Experiences</h2>
+    <div class="cards">
+      <article class="card"><h3><b>Tamilnad Mercantile Bank</b><br>Bnking Executive</h3><div><p>Leveraged banking data for customer information verification, credit monitoring, and risk assessment, focusing on data accuracy, identifying discrepancies, and supporting informed business decisions.</p></div></article>
+      <article class="card"><h3><b>CORIZO</b><br>Business Operations Executive</h3><div><p>Supported business operations through data management, record verification, and process coordination, developing skills in maintaining data accuracy, tracking operational activities, and identifying opportunities for improved business efficiency.</p></div></article>
+    </section>
+
+  <section class="faq" style="border-bottom:0" id="FAQ">
+    <h2>FAQ</h2>
+    <div class="faq-grid">
+      <div>
+        <details><summary>Tell me about yourself.</summary><p>I am a B.Sc. Computer Science graduate with experience in banking and business operations, interested in data analytics, problem-solving, and data-driven decision-making.</p></details>
+        <details><summary>What professional experience do you have?</summary><p>I have 1.5+ years of experience as a Customer Service Executive at Tamilnad Mercantile Bank, along with previous Business Operations experience at Corizo Edutech.</p></details>
+        <details><summary>What skills do you bring to an organization?</summary><p>Analytical thinking, problem-solving, data verification, customer relationship management, and operational process management.</p></details>
+        <details><summary>What kind of opportunities are you looking for?</summary><p>I am open to opportunities in Data Analytics, Data Science, Business Intelligence, and IT Operations where I can apply my skills and continue learning.</p></details>
+        <details><summary>Do you have any technical background?</summary><p>Yes, I hold a B.Sc. in Computer Science with a CGPA of 8.42/10, providing me with a foundation in programming, databases, and analytical thinking.</p></details>
+      </div>
+      <div class="img" role="img" aria-label="Hands typing on a laptop" style="--img:url(photos/FAQ.jpg)"></div>
+    </div>
+  </section>
+
+  <section class="message" id="contact">
+    <h2>Send Me a Message</h2>
+    <div class="panel">
+      <form id="contact-form">
+        <input type="hidden" name="access_key" value="342a4697-b321-4194-a4e1-f2e17c3c8582">
+        <input type="hidden" name="subject" value="New message from my portfolio">
+        <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+
+  <fieldset><legend>Name</legend>
+    <div class="names">
+      <label>First Name<input type="text" name="first_name" autocomplete="given-name" required></label>
+      <label>Last Name<input type="text" name="last_name" autocomplete="family-name"></label>
+    </div>
+  </fieldset>
+
+  <div><label class="t" for="email">Email <small>(required)</small></label>
+    <input id="email" type="email" name="email" required autocomplete="email"></div>
+
+  <div><label class="t" for="message">Message <small>(required)</small></label>
+    <textarea id="message" rows="6" name="message" required></textarea></div>
+
+  <button class="pill navy" type="submit">Send Message</button>
+  <p id="form-status" role="status" aria-live="polite"></p>
+</form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <a class="logo" href="#top">Irfan Mohammed</a>
+  <p>Madurai, Tamilnadu, India<br>(+91) 79048 48488<br>irfanmd6204@gmail.com</p>
+  <p>Irfan<br>Built with HTML &amp; CSS</p>
+<ul class="socials">
+  <li>
+    <a href="https://www.instagram.com/shxriaz/" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+      </svg>
+    </a>
+  </li>
+  <li>
+    <a href="https://www.linkedin.com/in/irfanmd04/" target="_blank" rel="noopener" aria-label="LinkedIn">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+        <rect x="2" y="9" width="4" height="12"/>
+        <circle cx="4" cy="4" r="2"/>
+      </svg>
+    </a>
+  </li>
+  <li>
+    <a href="https://github.com/irfanmohammed004/" target="_blank" rel="noopener" aria-label="GitHub">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+      </svg>
+    </a>
+  </li>
+</ul>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
