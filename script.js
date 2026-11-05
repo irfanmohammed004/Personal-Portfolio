@@ -1,6 +1,5 @@
-/* ===== Part 1 ===== */
-try {
 /* Scalloped badge icons */
+try {
 document.querySelectorAll('.badge').forEach(svg=>{
   const n=48,pts=[];
   for(let i=0;i<n;i++){const a=i/n*Math.PI*2,r=i%2?44:48;pts.push((50+r*Math.cos(a)).toFixed(1)+','+(50+r*Math.sin(a)).toFixed(1))}
@@ -47,9 +46,8 @@ document.querySelectorAll('.badge').forEach(svg=>{
   ();
 } catch (err) { console.error("script.js part 1:", err); }
 
-/* ===== Part 2 ===== */
-try {
 /* Keep scroll offset equal to the real header height */
+try {
 (function(){
   const header = document.querySelector('header');
   const set = () => document.documentElement.style.scrollPaddingTop = header.offsetHeight + 'px';
@@ -58,9 +56,8 @@ try {
 })();
 } catch (err) { console.error("script.js part 2:", err); }
 
-/* ===== Part 3 ===== */
-try {
  /*==Send me a message script==*/
+try {
 document.getElementById('contact-form').addEventListener('submit', async function(e){
   e.preventDefault();
   const form = e.target, status = document.getElementById('form-status');
@@ -86,3 +83,18 @@ document.getElementById('contact-form').addEventListener('submit', async functio
   btn.disabled = false; btn.textContent = 'Send Message';
 });
 } catch (err) { console.error("script.js part 3:", err); }
+
+/* ===== Mobile Header Menu ===== */
+try {
+  const btn = document.querySelector('.menu-btn');
+  const nav = document.getElementById('main-nav');
+  const setOpen = open => {
+    nav.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', open);
+    btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  };
+  btn.addEventListener('click', () => setOpen(!nav.classList.contains('open')));
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setOpen(false)));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(false); });
+  window.addEventListener('resize', () => { if (window.innerWidth > 820) setOpen(false); });
+} catch (err) { console.error("mobile menu:", err); }
