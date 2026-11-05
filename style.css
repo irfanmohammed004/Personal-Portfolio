@@ -29,7 +29,7 @@ section,header,footer{border-bottom:1px solid var(--navy)}
 .link{font-size:1.15rem;text-decoration:underline;text-underline-offset:5px}
 
 
-/* ===== Header ===== */
+/* ===== Header frosted glass effect ===== */
 header{
   background:rgba(248,250,252,0.75);
   backdrop-filter:blur(16px);
@@ -43,6 +43,8 @@ header{
   top:0;
   z-index:20;
 }
+header nav{display:flex;align-items:center;gap:28px}
+header nav a:not(.pill){text-decoration:none}
 
 /* ===== Hero ===== */
 .hero{background:var(--light_slate);display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:var(--pad);padding:clamp(40px,6vw,76px) var(--pad)}
@@ -144,7 +146,10 @@ footer .logo{font-size:3.4rem;font-weight:300}
   header nav{
     position:absolute;top:100%;left:0;right:0;
     flex-direction:column;align-items:stretch;gap:0;
-    background:var(--off_white);
+    background:rgba(248,250,252,0.75);
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
+    border-bottom:1px solid rgba(20,45,78,0.12);
     border-bottom:1px solid var(--navy);
     padding:0 var(--pad);
     max-height:0;overflow:hidden;visibility:hidden;opacity:0;
