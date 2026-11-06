@@ -43,7 +43,7 @@ header{
   top:0;
   z-index:20;
 }
-header .logo{font:400 1.6rem var(--serif);text-decoration:none}
+.logo{font:400 1.6rem var(--serif);text-decoration:none}
 header nav{display:flex;align-items:center;gap:28px}
 header nav a:not(.pill){text-decoration:none}
 
