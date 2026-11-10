@@ -113,3 +113,267 @@ if (btn && nav) {
 } else {
   console.error('Mobile menu: button or navigation element not found.');
 }
+
+
+// Projects Section //
+
+/* ===== Projects showcase ===== */
+(function () {
+  const CONFIG = {
+    heading: "Projects",
+    projects: [
+      {
+        id: "layoffs-cleaning",
+        title: "Layoffs Data Cleaning in MySQL",
+        category: "Data Cleaning Project",
+        date: "2026",
+        description: "Cleaned a raw layoffs CSV in MySQL using a staging table, window functions, string and date functions, and a self-join, producing an analysis-ready table.",
+        images: [
+          { src: "projects/layoffs_sql/initial data.png", alt: "Preview of the raw layoffs CSV", caption: "Raw CSV preview" },
+          { src: "projects/layoffs_sql/row_num.png", alt: "Duplicate check using ROW_NUMBER", caption: "Duplicate detection" },
+          { src: "projects/layoffs_sql/final data.png", alt: "Cleaned layoffs table", caption: "Cleaned output" }
+        ],
+        metrics: [
+          { value: "2,361", label: "Raw rows" },
+          { value: "5", label: "Duplicates removed" },
+          { value: "4", label: "Cleaning stages" }
+        ],
+        tech: ["MySQL", "Window functions", "Self-join", "STR_TO_DATE"],
+        link: { href: "https://github.com/irfanmohammed004/", label: "View project on GitHub" },
+        overview: {
+          summary: "A step-by-step cleaning workflow on a public layoffs dataset, documented query by query with the reasoning behind each decision.",
+          sections: [
+            { title: "The problem", text: "The raw CSV held 2,361 rows across 9 columns. It had 5 exact duplicate rows, company names with stray spaces, the same industry and country under different labels, dates stored as text, missing industry values, and rows with no layoff figures at all." },
+            { title: "My approach", text: "I worked on a staging copy as a failsafe. ROW_NUMBER() OVER (PARTITION BY ...) across every column flagged duplicates. TRIM(), LIKE 'Crypto%' and TRIM(TRAILING '.') standardized the text, and STR_TO_DATE() with ALTER TABLE converted the date column. A self-join on company filled missing industries from other rows of the same company." },
+            { title: "A judgement call", text: "Rows missing both total_laid_off and percentage_laid_off were deleted, because neither figure could be recovered from the table. Rows with only one of the two were kept." },
+            { title: "The result", text: "A deduplicated table with consistent labels, a true DATE column and no rows without layoff figures, with the original table left untouched." }
+          ]
+        }
+      },
+      /* Placeholder: replace this entry with your next project. */
+      {
+        id: "next-project",
+        title: "Your Next Project",
+        category: "Project Category",
+        date: "Year",
+        description: "One or two sentences on what you built and the problem it solved.",
+        images: [
+          { src: "photos/next-1.png", alt: "Describe the first image", caption: "First image caption" },
+          { src: "photos/next-2.png", alt: "Describe the second image", caption: "Second image caption" }
+        ],
+        metrics: [
+          { value: "00", label: "Metric one" },
+          { value: "00", label: "Metric two" },
+          { value: "00", label: "Metric three" }
+        ],
+        tech: ["Tool one", "Tool two", "Tool three"],
+        link: { href: "https://github.com/irfanmohammed004/", label: "View project" },
+        overview: {
+          summary: "A short framing sentence for the detailed overview.",
+          sections: [
+            { title: "The problem", text: "What was wrong or missing." },
+            { title: "My approach", text: "What you did and why." },
+            { title: "The result", text: "What changed because of it." }
+          ]
+        }
+      }
+    ]
+  };
+
+  /* ---------- helpers ---------- */
+  const stage = document.getElementById("ps-stage");
+  if (!stage) return;
+  const projects = CONFIG.projects, n = projects.length;
+  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const svg = (inner, w) => `<svg viewBox="0 0 24 24" width="${w || 18}" height="${w || 18}" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${inner}</svg>`;
+  const I = {
+    up: svg('<polyline points="18 15 12 9 6 15"/>'),
+    down: svg('<polyline points="6 9 12 15 18 9"/>'),
+    arrow: svg('<line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>'),
+    ext: svg('<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>'),
+    expand: svg('<path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>', 14),
+    undo: svg('<polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>')
+  };
+  const FALLBACK = "linear-gradient(135deg,#1f4a7a,#0D9488)";   /* shows if an image file is missing */
+  const bg = (src) => `background-image:url('${esc(src)}'),${FALLBACK}`;
+
+  const heading = document.querySelector("#projects > h2");
+  if (heading) heading.textContent = CONFIG.heading;
+
+  /* ---------- markup for one project ---------- */
+  function slideHTML(p) {
+    const imgs = p.images.map((im, k) =>
+      `<div class="ps-img" role="img" aria-label="${esc(im.alt)}"${k ? ' aria-hidden="true"' : ""} style="${bg(im.src)}"></div>`).join("");
+    const arrows = p.images.length > 1
+      ? `<div class="ps-updown">
+           <button type="button" class="ps-round ps-round--dark" data-img="-1" aria-label="Previous image">${I.up}</button>
+           <button type="button" class="ps-round ps-round--dark" data-img="1" aria-label="Next image">${I.down}</button>
+         </div>` : "";
+    const metrics = p.metrics.map((m) => `<div><dt>${esc(m.label)}</dt><dd>${esc(m.value)}</dd></div>`).join("");
+    const tags = p.tech.map((t) => `<li>${esc(t)}</li>`).join("");
+    const secs = p.overview.sections.map((s, k) =>
+      `<div class="ps-sec ps-reveal" style="--i:${k + 3}"><h4>${esc(s.title)}</h4><p>${esc(s.text)}</p></div>`).join("");
+
+    return `
+    <article class="ps-card">
+      <div class="ps-pic">
+        <div class="ps-view" role="group" aria-roledescription="carousel" aria-label="${esc(p.title)} images" tabindex="0">
+          <div class="ps-track">${imgs}</div>
+          ${arrows}
+          <span class="ps-count"></span>
+        </div>
+        <div class="ps-cap">
+          <span class="ps-cap-text" aria-live="polite"></span>
+          <button type="button" class="ps-chip" data-inspect>${I.expand} Quick Inspect</button>
+        </div>
+        <dialog class="ps-dialog" aria-label="${esc(p.title)} image preview">
+          <div class="ps-dialog-img" role="img"></div>
+          <div class="ps-cap"><span class="ps-dialog-cap"></span><button type="button" class="ps-chip" data-close>Close</button></div>
+        </dialog>
+      </div>
+
+      <div class="ps-flip"><div class="ps-flip-inner">
+        <div class="ps-face ps-front">
+          <div class="ps-top"><span class="ps-cat">${esc(p.category)}</span><span class="ps-date">${esc(p.date)}</span></div>
+          <h3 class="ps-title">${esc(p.title)}</h3>
+          <p class="ps-desc">${esc(p.description)}</p>
+          <dl class="ps-metrics">${metrics}</dl>
+          <ul class="ps-tags">${tags}</ul>
+          <div class="ps-actions">
+            <button type="button" class="ps-pill" data-explore aria-expanded="false">Explore Interactive Case Study ${I.arrow}</button>
+            <a class="ps-round" href="${esc(p.link.href)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(p.link.label)} (opens in a new tab)">${I.ext}</a>
+          </div>
+        </div>
+
+        <div class="ps-face ps-back" inert aria-hidden="true">
+          <div class="ps-back-top">
+            <span class="ps-kicker ps-reveal" style="--i:0">Case study</span>
+            <button type="button" class="ps-chip" data-back>${I.undo} Back to summary</button>
+          </div>
+          <h3 class="ps-title ps-reveal" style="--i:1">${esc(p.title)}</h3>
+          <p class="ps-lead ps-reveal" style="--i:2">${esc(p.overview.summary)}</p>
+          ${secs}
+        </div>
+      </div></div>
+    </article>`;
+  }
+
+  /* ---------- behaviour for one project ---------- */
+  function wire(card, p) {
+    const q = (s) => card.querySelector(s);
+    const imgCount = p.images.length;
+    const track = q(".ps-track"), imgs = [...track.children];
+    const view = q(".ps-view"), count = q(".ps-count"), capText = q(".ps-cap-text");
+    const dlg = q(".ps-dialog"), dlgImg = q(".ps-dialog-img"), dlgCap = q(".ps-dialog-cap");
+    let i = 0;
+
+    function setImg(v) {                      /* image scroller (wraps around) */
+      i = (v + imgCount) % imgCount;
+      track.style.transform = `translateY(-${i * 100}%)`;
+      imgs.forEach((el, k) => el.setAttribute("aria-hidden", String(k !== i)));
+      count.textContent = `${i + 1} / ${imgCount}`;
+      capText.textContent = p.images[i].caption;
+    }
+    setImg(0);
+
+    card.querySelectorAll("[data-img]").forEach((b) =>
+      b.addEventListener("click", () => setImg(i + Number(b.dataset.img))));
+    view.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowDown") { e.preventDefault(); setImg(i + 1); }
+      if (e.key === "ArrowUp") { e.preventDefault(); setImg(i - 1); }
+    });
+
+    q("[data-inspect]").addEventListener("click", () => {   /* Quick Inspect */
+      dlgImg.style.cssText = bg(p.images[i].src);
+      dlgImg.setAttribute("aria-label", p.images[i].alt);
+      dlgCap.textContent = p.images[i].caption;
+      dlg.showModal();
+    });
+    q("[data-close]").addEventListener("click", () => dlg.close());
+    dlg.addEventListener("click", (e) => { if (e.target === dlg) dlg.close(); });
+
+    /* 3D flip: only the description part */
+    const inner = q(".ps-flip-inner"), front = q(".ps-front"), back = q(".ps-back");
+    const explore = q("[data-explore]"), backBtn = q("[data-back]");
+    function setFlip(flipped) {
+      inner.classList.toggle("is-flipped", flipped);
+      front.inert = flipped; back.inert = !flipped;                 /* hide the turned-away face from keyboard */
+      front.setAttribute("aria-hidden", String(flipped));
+      back.setAttribute("aria-hidden", String(!flipped));
+      explore.setAttribute("aria-expanded", String(flipped));
+      (flipped ? backBtn : explore).focus({ preventScroll: true });
+    }
+    explore.addEventListener("click", () => setFlip(true));
+    backBtn.addEventListener("click", () => setFlip(false));
+
+    /* hover glow follows the pointer */
+    card.addEventListener("mousemove", (e) => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty("--mx", `${e.clientX - r.left}px`);
+      card.style.setProperty("--my", `${e.clientY - r.top}px`);
+    });
+
+
+/* Mobile swipe navigation */
+let touchStartX = 0;
+let touchStartY = 0;
+let swipeAllowed = false;
+
+card.addEventListener("touchstart", (e) => {
+  if (e.touches.length !== 1) return;
+
+  /* Do not trigger swipes from buttons or links */
+  swipeAllowed = !e.target.closest("button, a");
+
+  touchStartX = e.touches[0].clientX;
+  touchStartY = e.touches[0].clientY;
+}, { passive: true });
+
+card.addEventListener("touchend", (e) => {
+  if (!swipeAllowed || !e.changedTouches.length) return;
+
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  const dy = e.changedTouches[0].clientY - touchStartY;
+
+  /* Ignore short gestures and vertical scrolling */
+  if (Math.abs(dx) < 65 || Math.abs(dx) < Math.abs(dy) * 1.25) {
+    return;
+  }
+
+  idx = (idx + (dx < 0 ? 1 : -1) + n) % n;
+  show(dx < 0 ? 1 : -1);
+
+  swipeAllowed = false;
+}, { passive: true });
+
+  }
+
+  /* ---------- project slider ---------- */
+  let idx = 0;
+  const counter = document.getElementById("ps-count");
+  const live = document.getElementById("ps-live");
+
+  function show(dir) {                        /* rebuilding resets image index and un-flips the card */
+    const p = projects[idx];
+    stage.innerHTML = `<div class="ps-slide-in"${dir ? ` data-dir="${dir > 0 ? "next" : "prev"}"` : ""}>${slideHTML(p)}</div>`;
+    wire(stage.querySelector(".ps-card"), p);
+    if (counter) counter.textContent = `${idx + 1} / ${n}`;
+    if (live) live.textContent = `Project ${idx + 1} of ${n}: ${p.title}`;
+  }
+
+  document.querySelectorAll("[data-ps-go]").forEach((b) =>
+    b.addEventListener("click", () => {
+      const d = Number(b.dataset.psGo);
+      idx = (idx + d + n) % n;
+      show(d);
+    }));
+
+  show(0);
+})();
+
+/* Projects: section height = viewport minus header */
+(function(){
+  const h=document.querySelector('header');
+  const set=()=>document.documentElement.style.setProperty('--ps-header',h.offsetHeight+'px');
+  set(); window.addEventListener('resize',set);
+})();

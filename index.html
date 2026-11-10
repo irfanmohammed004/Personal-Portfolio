@@ -20,6 +20,7 @@
     <a href="#about">About</a>
     <a href="#experience">Experience</a>
     <a href="#skills">Skills and expertise</a>
+    <a href="#projects">Projects</a>
     <a href="#FAQ">FAQ</a>
   </nav>
 </header>
@@ -99,6 +100,36 @@
     </div>
   </section>
 </main>
+
+<section class="ps" id="projects" aria-roledescription="carousel" aria-label="Projects">
+  <h2>Projects</h2>
+
+  <div class="ps-wrap">
+    <div class="ps-nav ps-nav--prev">
+      <button type="button" class="ps-round" data-ps-go="-1" aria-label="Previous project">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+    </div>
+    <div class="ps-nav ps-nav--next">
+      <button type="button" class="ps-round" data-ps-go="1" aria-label="Next project">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+    <div class="ps-stage" id="ps-stage"></div>
+  </div>
+
+  <div class="ps-mnav">
+    <button type="button" class="ps-round" data-ps-go="-1" aria-label="Previous project">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <span id="ps-count"></span>
+    <button type="button" class="ps-round" data-ps-go="1" aria-label="Next project">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+  </div>
+  <p class="ps-sr" id="ps-live" aria-live="polite"></p>
+</section>
+
 
 <footer>
   <a class="logo" href="#top">Irfan Mohammed</a>
